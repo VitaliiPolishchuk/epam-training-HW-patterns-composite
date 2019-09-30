@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class Number implements Expression {
     private double token;
     private EvaluationServiceImpl.TypeOperation typeOperation;
@@ -21,5 +23,19 @@ public class Number implements Expression {
 
     public EvaluationServiceImpl.TypeOperation getTypeOperation() {
         return typeOperation;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Number number = (Number) o;
+        return Double.compare(number.token, token) == 0 &&
+                typeOperation == number.typeOperation;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(token, typeOperation);
     }
 }

@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class CompoundExpression implements Expression{
 
@@ -34,5 +35,19 @@ public class CompoundExpression implements Expression{
                 "expressions=" + expressions +
                 ", typeOperation=" + typeOperation +
                 "}\n";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CompoundExpression that = (CompoundExpression) o;
+        return Objects.equals(expressions, that.expressions) &&
+                typeOperation == that.typeOperation;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(expressions, typeOperation, evaluationService);
     }
 }

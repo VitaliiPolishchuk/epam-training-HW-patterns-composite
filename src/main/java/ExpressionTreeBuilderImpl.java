@@ -3,6 +3,9 @@ public class ExpressionTreeBuilderImpl implements ExpressionTreeBuilder {
     int index;
 
     public Expression build(String expressionStr){
+        if(expressionStr == null) {
+            return null;
+        }
         index = 0;
         return buildHelper(expressionStr, EvaluationServiceImpl.TypeOperation.ADD);
     }
